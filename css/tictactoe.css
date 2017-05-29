@@ -1,0 +1,48 @@
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  /*background-image: url('../images/fijibackground.jpg');*/
+  /*background-size: cover;*/
+}
+
+.result {
+  position: absolute;
+
+}
+
+.container {
+  position: absolute;
+  top: 20%;
+}
+
+.reset {
+  position: absolute;
+  bottom: 5%;
+
+}
+
+h1 {
+  position: absolute;
+  top: 5%;
+}
+
+table tr td {
+  border: 3px solid black;
+  width: 150px;
+  height: 150px;
+}
+
+td {
+  height: 20%;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Finger Paint', cursive;
+  color: red;
+};
