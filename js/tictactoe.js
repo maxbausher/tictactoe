@@ -31,6 +31,8 @@ var game = {
   win: false,
   userImagesSelected: 0,
   score: 0,
+  playersSet: false,
+  // levelBackgrounds: [url('../images/moragplanet.jpg')],
 
   board: [null, null, null, null, null, null, null, null, null],
 
@@ -38,7 +40,7 @@ var game = {
     this.board = [null, null, null, null, null, null, null, null, null]
     this.turns = 0;
     this.win = false;
-    this.userImagesSelected = 0;
+    this.userImagesSelected = 2;
   },
 
   checkWinner: function(movesArray){
@@ -76,6 +78,15 @@ $( document ).ready(function() {
 
     $( "td" ).on('click', function() {
 
+      if(game.userImagesSelected === 0){
+        alert("Player 1 needs to select a character, followed by Player 2");
+        return;
+      } else if(game.userImagesSelected === 1){
+          alert("Player 2 still needs to select a character");
+          return;
+      } else {
+       game.playersSet = true;
+      }
       var boardIndex = this.id;
 
       if( game.win ){
@@ -116,12 +127,14 @@ $( document ).ready(function() {
 
     $('#reset').on('click', function(){
         game.resetGame();
+        // $('body').css('background-image', "url(" + game.levelBackgrounds + ")");
         $('td').css('background-image', '');
         $('h2').text('');
         // $('img').css
     });
 
     $('img').on('click', function() {
+        game.userImagesSelected += 1;
         game.players[game.user].name = this.id
         game.players[game.user].image = this.src
         $('#' + this.id).hide();
