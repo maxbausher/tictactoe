@@ -10,16 +10,19 @@
 
   <h1>Knots and Crosses</h1>
 
-  <h2 class='result'></h2>
+  <h2 id='resultbanner'> </h2>
 
-  <div>
-
+  <div id='playerOne' class='playerRecord'>
+    <h3>Player One</h3>
+    <p id='x'></p>
   </div>
-  <div>
-
+  <div id= 'playerTwo' class='playerRecord'>
+    <h3>Player Two</h3>
+    <p id='o'></p>
   </div>
 
-  <table class='container'>
+<div class='container'>
+  <table>
     <tr>
       <td id="0"></td>
       <td id="1"></td>
@@ -36,8 +39,9 @@
       <td id="8"></td>
     </tr>
   </table>
+</div>
 
-  <input class ='reset' type="button" name="reset" value="reset">
+  <input id ='reset' type="button" name="reset" value="reset">
 
 <script src = "js/jquery.js"= ></script>
 <script src = "js/tictactoe.js"></script>

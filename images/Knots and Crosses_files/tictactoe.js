@@ -1,39 +1,15 @@
 
+var user = 'x';
+var turns = 0;
+var score = 1;
 
+var knotsAndCrosses = {
 
-
-//
-// players.x.score += 1;
-//
-// players['x'].score += 1;
-//
-// players[ user ].score += 1;
-
-var game = {
-
-  players: {
-
-    x: {
-      name: 'bobby',
-      score: 0,
-    },
-
-    o: {
-      name: 'bobby',
-      score: 0,
-    }
-
-  },
-  user: 'x',
-  turns: 0,
-  win: true,
 
   board: [null, null, null, null, null, null, null, null, null],
-
   resetGame: function(){
     this.board = [null, null, null, null, null, null, null, null, null]
   },
-
   checkWinner: function(movesArray){
     // debugger;
     var board = this.board;
@@ -46,20 +22,8 @@ var game = {
       if(board[2] === board[5] && board[2] === board[8] && board[2] !== null){return true;}
       if(board[0] === board[4] && board[0] === board[8] && board[0] !== null){return true;}
       if(board[2] === board[4] && board[2] === board[6] && board[2] !== null){return true;}
-  }, //checkWinner function
-
-  updateUI: function(){
-    if (this.win) {
-      debugger;
-      console.log(game.players[game.user].name + " won");
-      $('h2').text(game.players[game.user].name + ' wins!');
-      $('#' + game.user).text(game.players[game.user].score += 1 ); // increment score for current winner
-    } else {
-      console.log('game is a draw');
-      $('h2').text('Draw');
-    }
-  }
-}; // var game
+  } //checkWinner function
+}; // var knotsAndCrosses
 
 
 
@@ -67,37 +31,39 @@ $( document ).ready(function() {
 
     $( "td" ).on('click', function() {
 
-      if ( $(this).text().length ){ // if cell has a length, then it is occupied
-      // if ( cell === 'x' || cell === 'o'){
+      var index = this.id;
+      // debugger;
+      if ($('#' + index).text() === 'x' || $('#' + index).text() === 'o'){
         alert("Occupied try again!");
         return;
       }
-
-      game.board[ this.id ] = game.user; //find
-      $(this).text(game.user);
-      game.turns += 1;
-
-      if(game.checkWinner(game.board)){
-        win = true;
-        game.updateUI();
-        game.resetGame();
+      knotsAndCrosses.board[ index ] = user;
+      var lastMove = user;
+      console.log(index, user);
+      $('#' + index).text(user);
+      if( user === 'x' ){ user = 'o'}
+      else { user = 'x'};
+      turns += 1;
+      if(knotsAndCrosses.checkWinner(knotsAndCrosses.board)){
+        console.log(lastMove + " won");
+        $('h2').text(lastMove + ' wins!');
+        $('#' + lastMove).text(score);
+        knotsAndCrosses.resetGame();
         return;
       }
-      if (game.turns === 9){
-        game.win = false;
-        game.updateUI();
-        game.resetGame();
+      if (turns === 9){
+        console.log('game is a draw');
+        $('h2').text('Draw');
+        knotsAndCrosses.resetGame();
         return ;
       }
-      if( game.user === 'x' ){
-        game.user = 'o'
-      } else {
-        game.user = 'x'
-      };
     }) //on-click function
 
     $('#reset').on('click', function(){
-        game.resetGame();
+        var lastScore = $(parseInt('#'+lastMove).text());
+        var newScore = (lastScore += 1);
+        $('#' + lastMove).text(lastScore);
+        knotsAndCrosses.resetGame();
         $('td').text(' ')
     });
 }); //doc.ready
