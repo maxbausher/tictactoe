@@ -1,25 +1,48 @@
 
+@font-face {
+  font-family: Starlord;
+  src: url(../fonts/Starlord.otf);
+}
+
 * {
   margin: 0px;
   padding: 0px;
 }
 
+h3{
+  display: block;
+}
+
 body {
   display: flex;
   justify-content: center;
-  /*background-image: url('../images/fijibackground.jpg');*/
-  /*background-size: cover;*/
+  background-image: url('../images/moragplanet.jpg');
+  background-size: cover;
+  font-family: 'Roboto', sans-serif;;
 }
+
+.characterSelector {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    height: 200px;
+}
+
 .container {
   position: absolute;
-  top: 20%;
+  top: 10%;
   width: 30%;
   height: 50%;
-  border: 1px solid red;
+  border: 2px solid grey;
 }
+
 h1 {
   position: absolute;
-  top: 5%;
+  top: 2%;
+  color: white;
+  font-family: Starlord;
 }
 
 table {
@@ -28,7 +51,8 @@ table {
 }
 
 table tr td {
-  border: 3px solid black;
+  border: 1px solid black;
+
 }
 
 td {
@@ -36,45 +60,64 @@ td {
   width: 33%;
   height: 33%;
   text-align: center;
-  font-size: 30%;
+  font-size: 30px;
   font-weight: bold;
-  font-family: 'Finger Paint', cursive;
-  color: red;
-};
+  font-family: ;
+  color: rgb(9, 21, 36);
+  background-color: rgba(255,255,255, 0.4);
+  background-size: cover;
+}
 
+img {
 
+  width: 10%;
+  height: auto;
+  top: 85%;
+  bottom: 3%;
+  left: 3%;
+  right: 3%;
+  padding: 5px;
+}
 
 .playerRecord {
   position: absolute;
-  border: 3px solid black;
+  width: 15%;
+  height: 20%;
+  border: 2px solid grey;
+  background-color: rgba(255,255,255, 0.4);
+  color: rgb(9, 21, 36);
 }
+
+
 
 #playerOne {
   position: absolute;
   top: 35%;
-  left: 5px;
+  left: 16%;
 }
 
 #playerTwo {
   position: absolute;
   top: 35%;
-  right: 5px
+  right: 16%;
 }
 
 #x {
-  font-family: inherit;
+  color: rgb(9, 21, 36);
 }
 
 #o {
   font-family: inherit;
+  color: rgb(9, 21, 36);
 }
 
 #resultbanner {
   position: absolute;
   top: 12%;
+  color: rgb(9, 21, 36);
 }
 
 #reset {
   position: absolute;
-  bottom: 5%;
+  bottom: 35%;
 }

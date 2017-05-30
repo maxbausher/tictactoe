@@ -14,13 +14,15 @@ var game = {
   players: {
 
     x: {
-      name: 'bobby',
+      name: '',
       score: 0,
+      image: ''
     },
 
     o: {
-      name: 'bobby',
+      name: '',
       score: 0,
+      image: ''
     }
 
   },
@@ -32,6 +34,7 @@ var game = {
 
   resetGame: function(){
     this.board = [null, null, null, null, null, null, null, null, null]
+    this.turns = 0;
   },
 
   checkWinner: function(movesArray){
@@ -50,7 +53,7 @@ var game = {
 
   updateUI: function(){
     if (this.win) {
-      debugger;
+      // debugger;
       console.log(game.players[game.user].name + " won");
       $('h2').text(game.players[game.user].name + ' wins!');
       $('#' + game.user).text(game.players[game.user].score += 1 ); // increment score for current winner
@@ -67,16 +70,15 @@ $( document ).ready(function() {
 
     $( "td" ).on('click', function() {
 
-      if ( $(this).text().length ){ // if cell has a length, then it is occupied
+      if ( $(this).text().length > 0 ){ // if cell has a length, then it is occupied
       // if ( cell === 'x' || cell === 'o'){
         alert("Occupied try again!");
         return;
       }
 
       game.board[ this.id ] = game.user; //find
-      $(this).text(game.user);
+      $("#" + this.id).css('background-image', "url(" + game.players[game.user].image + ")");
       game.turns += 1;
-
       if(game.checkWinner(game.board)){
         win = true;
         game.updateUI();
@@ -98,6 +100,20 @@ $( document ).ready(function() {
 
     $('#reset').on('click', function(){
         game.resetGame();
-        $('td').text(' ')
+        $('td').text('');
+        $('h2').text('');
     });
+
+    $('img').on('click', function() {
+        game.players[game.user].name = this.id
+        game.players[game.user].image = this.src
+        $('#' + this.id).hide();
+        if( game.user === 'x' ){
+          $('#title1').text(this.id);
+          game.user = 'o'
+        } else {
+          $('#title2').text(this.id);
+          game.user = 'x'
+        };
+    })
 }); //doc.ready
