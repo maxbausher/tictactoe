@@ -28,13 +28,17 @@ var game = {
   },
   user: 'x',
   turns: 0,
-  win: true,
+  win: false,
+  userImagesSelected: 0,
+  score: 0,
 
   board: [null, null, null, null, null, null, null, null, null],
 
   resetGame: function(){
     this.board = [null, null, null, null, null, null, null, null, null]
     this.turns = 0;
+    this.win = false;
+    this.userImagesSelected = 0;
   },
 
   checkWinner: function(movesArray){
@@ -56,7 +60,10 @@ var game = {
       // debugger;
       console.log(game.players[game.user].name + " won");
       $('h2').text(game.players[game.user].name + ' wins!');
-      $('#' + game.user).text(game.players[game.user].score += 1 ); // increment score for current winner
+      game.score += 1;
+      $('#' + game.user + ' img:hidden:first').show();// increment score for current winner
+
+      // $('.playerRecord img:hidden:first')
     } else {
       console.log('game is a draw');
       $('h2').text('Draw');
@@ -65,30 +72,38 @@ var game = {
 }; // var game
 
 
-
 $( document ).ready(function() {
 
     $( "td" ).on('click', function() {
 
-      if ( $(this).text().length > 0 ){ // if cell has a length, then it is occupied
+      var boardIndex = this.id;
+
+      if( game.win ){
+        return;
+      }
+      // console.log($("#" + boardIndex).css('background-image') );
+
+
+      console.log( game.board[ boardIndex ] );
+      if ( game.board[ boardIndex ] ){ // if cell has a length, then it is occupied
       // if ( cell === 'x' || cell === 'o'){
         alert("Occupied try again!");
         return;
       }
 
-      game.board[ this.id ] = game.user; //find
-      $("#" + this.id).css('background-image', "url(" + game.players[game.user].image + ")");
+      game.board[ boardIndex ] = game.user; //find
+      $("#" + boardIndex).css('background-image', "url(" + game.players[game.user].image + ")");
       game.turns += 1;
       if(game.checkWinner(game.board)){
-        win = true;
+        game.win = true;
         game.updateUI();
-        game.resetGame();
+        // game.resetGame();
         return;
       }
       if (game.turns === 9){
         game.win = false;
         game.updateUI();
-        game.resetGame();
+        // game.resetGame();
         return ;
       }
       if( game.user === 'x' ){
@@ -96,12 +111,14 @@ $( document ).ready(function() {
       } else {
         game.user = 'x'
       };
-    }) //on-click function
+
+    }); //on-click function
 
     $('#reset').on('click', function(){
         game.resetGame();
-        $('td').text('');
+        $('td').css('background-image', '');
         $('h2').text('');
+        // $('img').css
     });
 
     $('img').on('click', function() {

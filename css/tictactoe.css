@@ -79,6 +79,11 @@ img {
   padding: 5px;
 }
 
+.hidden {
+  display: none;
+  float: left;
+}
+
 .playerRecord {
   position: absolute;
   width: 15%;
@@ -90,24 +95,19 @@ img {
 
 
 
-#playerOne {
+#x {
   position: absolute;
   top: 35%;
   left: 16%;
-}
-
-#playerTwo {
-  position: absolute;
-  top: 35%;
-  right: 16%;
-}
-
-#x {
+  text-align: center;
   color: rgb(9, 21, 36);
 }
 
 #o {
-  font-family: inherit;
+  position: absolute;
+  top: 35%;
+  right: 16%;
+  text-align: center;
   color: rgb(9, 21, 36);
 }
 
@@ -115,6 +115,8 @@ img {
   position: absolute;
   top: 12%;
   color: rgb(9, 21, 36);
+  z-index: 100;
+  background-color: rgba(100, 100, 100, 0.5);
 }
 
 #reset {
