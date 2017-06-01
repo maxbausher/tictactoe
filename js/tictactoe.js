@@ -25,7 +25,7 @@ var game = {
   userImagesSelected: 0,
   gamesPlayed: 0,
   playersSet: false,
-  levelBackgrounds:['images/moragstructure.jpg','images/novaprimebackground.jpg','images/kylnbackground.jpg','images/kylndetainees.jpeg','images/sanctuary.png','images/Knowhere.png','images/knowhereinside.jpg','images/finalbattle.jpg','images/darkastorcrash.png'],
+  levelBackgrounds:['images/moragstructure.jpg','images/novaprimebackground.jpg','images/kylnbackground.jpg','images/jailpic.jpeg','images/sanctuary.png','images/Knowhere.png','images/knowhereinside.jpg','images/finalbattle.jpg','images/darkastorcrash.png'],
   // levelBackgrounds: [url('../images/moragplanet.jpg')],
 
   board: [null, null, null, null, null, null, null, null, null],
