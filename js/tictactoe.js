@@ -36,7 +36,6 @@ var game = {
     this.win = false;
     this.userImagesSelected = 2;
   },
-
   checkWinner: function(movesArray){
     // debugger;
     var board = this.board;
@@ -120,6 +119,7 @@ var restoreGameUI = function () {
 
 $( document ).ready(function() {
 
+  // var bot = false;
 
   // Load saved game state if available
   if (typeof(Storage) !== "undefined") {
@@ -134,13 +134,12 @@ $( document ).ready(function() {
   }
 
   $( "td" ).on('click', function() {
-
+// debugger;
     if(game.userImagesSelected === 0){
       alert("Player 1 needs to select a character, followed by Player 2");
       return;
-    } else if(game.userImagesSelected === 1){
-        alert("Player 2 still needs to select a character");
-        return;
+    } else if (game.userImagesSelected === 1){
+      alert("Player 2 still needs to select a character");
     } else {
      game.playersSet = true;
      $('.characterSelector *').hide();
@@ -150,12 +149,8 @@ $( document ).ready(function() {
     if( game.win ){
       return;
     }
-    // console.log($("#" + boardIndex).css('background-image') );
 
-
-    console.log( game.board[ boardIndex ] );
     if ( game.board[ boardIndex ] ){ // if cell has a length, then it is occupied
-    // if ( cell === 'x' || cell === 'o'){
       $('#resultbanner').text("Occupied try again!");
       return;
     }
@@ -170,12 +165,11 @@ $( document ).ready(function() {
       return;  // avoid switching player token after win
     }
 
-    if( game.user === 'x' ){
+    if( game.user === 'x' ) {
       game.user = 'o'
     } else {
       game.user = 'x'
-    };
-
+    }
   }); //on-click function
 
 
@@ -198,17 +192,14 @@ $( document ).ready(function() {
       game.userImagesSelected = 0;
       game.players.x.score = 0;
       game.players.o.score = 0;
-      $('#playerXbackground').css('background-image', '');
-      $('#playerObackground').css('background-image', '');
-      $('#x img').hide();
-      $('#o img').hide();
-      $('#clearHistory').hide();
+      $('#playerXbackground, #playerObackground').css('background-image', '');
+      $('#x img, #o img, #clearHistory').hide();
 
 
   });
 
 
-  $('img').on('click', function() {
+  $('.characterSelector > img').on('click', function() {
       game.userImagesSelected += 1;
       game.players[game.user].name = this.id
       game.players[game.user].image = this.src
@@ -221,8 +212,9 @@ $( document ).ready(function() {
         $('#title2').text(this.id);
         $('#playerObackground').css({'background-image': 'url(' + game.players.o.image + ')', 'background-size': 'cover'});
         game.user = 'x'
-      };
-  })
+      }
+  });
+
 
   $('#cheat').on('click', function () {
     game.players.x.score = 5;

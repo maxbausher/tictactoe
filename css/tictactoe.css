@@ -174,7 +174,20 @@ img {
   color: white;
   border: 1px solid black;
 
-}
+/*}
+
+#AI {
+    position: absolute;
+    background-color: rgba(212,175,55,0.75);
+    border: 1px solid grey;
+    width: 15.25%;
+    top: 56%;
+    right: 16%;
+    text-align: center;
+    color: rgba(0,0,0,0.75);
+    font-family: Starlord;
+
+}*/
 
 #cheat {
   position: absolute;
